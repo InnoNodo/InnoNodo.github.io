@@ -1,3 +1,7 @@
+export interface EmailResponse {
+    id: number;
+}
+
 export interface Comic {
     month: string;
     num: number;
@@ -10,8 +14,4 @@ export interface Comic {
     img: string;
     title: string;
     day: string;
-}
-
-export interface EmailResponse {
-    id: number;
 }

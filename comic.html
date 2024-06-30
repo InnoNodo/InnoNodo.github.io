@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homework 2</title>
+    <script src="dist/comic.js" defer></script>
 </head>
 <style>
     body {
@@ -28,41 +29,11 @@
         <button type="submit">Submit</button>
     </form>
 
-    <div class="container-for-comics" id="comic" >
+    <div class="container-for-comics" id="comic">
         <h2 id="comicTitle"></h2>
         <img id="comicImage" src="" alt="" style="max-width: 100%;">
         <p id="comicDate"></p>
     </div>
 </div>
-
-
-<script>
-    document.getElementById('emailForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        const email = document.getElementById('email').value;
-
-        const encodedEmail = encodeURIComponent(email);
-
-        const url = ` https://fwd.innopolis.university/api/hw2?email=${encodedEmail}`;
-
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                return fetch(`https://fwd.innopolis.university/api/comic?id=${data}`);
-            })
-            .then(response => response.json())
-            .then(comicData => {
-                document.getElementById('comicImage').src = comicData.img;
-                document.getElementById('comicImage').alt = comicData.alt;
-
-                const uploadTitle = comicData.safe_title
-                const uploadDate = new Date(comicData.year, comicData.month - 1, comicData.day);
-                document.getElementById('comicDate').textContent = `Uploaded on: ${uploadDate.toLocaleDateString()}`;
-                document.getElementById('comicTitle').textContent = `Title: ${uploadTitle.toLocaleString()}`
-            })
-    });
-
-</script>
 </body>
 </html>
