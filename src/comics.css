@@ -1,0 +1,14 @@
+body {
+    background-color: white;
+    display: grid;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.container-for-comics {
+    align-items: center;
+    justify-items: center;
+    margin-top: 5px;
+}
