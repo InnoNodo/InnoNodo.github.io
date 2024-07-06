@@ -1,12 +1,12 @@
 import React from 'react';
-import '../comics.css';
 import ComicDisplay from "../components/ComicDisplay";
 
-const ComicsPage: React.FC = () => {
-
+const ComicsPage = () => {
     return (
-        <ComicDisplay />
+        <div>
+            <ComicDisplay />
+        </div>
     );
-};
+}
 
 export default ComicsPage;

@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
-import { Comic, EmailResponse } from '../types';
-import axios from "axios";
+import axios from 'axios';
 
-const ComicDisplay: React.FC = () => {
+const ComicDisplay = () => {
     const [email, setEmail] = useState('');
-    const [comic, setComic] = useState<Comic | null>(null);
+    const [comic, setComic] = useState(null);
 
-    const handleSubmit = async (event: React.FormEvent) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         try {
             const encodedEmail = encodeURIComponent(email);
             const url = `https://fwd.innopolis.university/api/hw2?email=${encodedEmail}`;
 
-            const emailResponse = await axios.get<EmailResponse>(url);
+            const emailResponse = await axios.get(url);
             const comicUrl = `https://fwd.innopolis.university/api/comic?id=${emailResponse.data}`;
-            const comicResponse = await axios.get<Comic>(comicUrl);
+            const comicResponse = await axios.get(comicUrl);
 
             setComic(comicResponse.data);
         } catch (error) {
@@ -37,7 +36,7 @@ const ComicDisplay: React.FC = () => {
             </form>
 
             {comic && (
-                <div className={"container-for-comics"}>
+                <div className="container-for-comics">
                     <img id="comicImage" src={comic.img} alt={comic.alt} />
                     <h1 id="comicTitle">Title: {comic.safe_title}</h1>
                     <p id="comicDate">

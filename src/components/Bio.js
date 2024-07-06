@@ -1,9 +1,7 @@
-import React from 'react';
-
-const Bio: React.FC = () => (
+const Bio = () => (
     <div>
         <div className="wrapper">
-            <img src="images/kirill.jpg" alt="Portrait" className="circular-image" />
+            <img src="../../images/kirill.jpg" alt="Portrait" className="circular-image" />
 
             <div className="paragraph-heading">
                 About me:
