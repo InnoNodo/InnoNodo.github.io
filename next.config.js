@@ -5,7 +5,7 @@ module.exports = {
   ) {
     return {
       '/': { page: '/' },
-      '/about': { page: '/about' },
+      '/comics': { page: '/comics' },
       // Add more paths as needed
     };
   },
