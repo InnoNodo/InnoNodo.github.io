@@ -6,7 +6,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <link rel="icon" href="/landing-page.png" />
+        <link rel="icon" href="/favicon.ico/"/>
         <title>Portfolio</title>
         <meta name="author" content="Kirill Nosov" />
         <meta name="description" content="Portfolio" />
