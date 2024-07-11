@@ -1,51 +1,23 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const ComicDisplay = () => {
-    const [email, setEmail] = useState('');
-    const [comic, setComic] = useState(null);
+const ComicDisplay = ({ initialComic }) => {
+  const [email, setEmail] = useState('');
+  const [comic, setComic] = useState(initialComic);
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-
-        try {
-            const encodedEmail = encodeURIComponent(email);
-            const url = `https://fwd.innopolis.university/api/hw2?email=${encodedEmail}`;
-
-            const emailResponse = await axios.get(url);
-            const comicUrl = `https://fwd.innopolis.university/api/comic?id=${emailResponse.data}`;
-            const comicResponse = await axios.get(comicUrl);
-
-            setComic(comicResponse.data);
-        } catch (error) {
-            console.error("Error fetching comic data:", error);
-        }
-    };
-
-    return (
-        <div>
-            <form id="emailForm" onSubmit={handleSubmit}>
-                <input
-                    type="email"
-                    id="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-                <button type="submit">Submit</button>
-            </form>
-
-            {comic && (
-                <div className="container-for-comics">
-                    <img id="comicImage" src={comic.img} alt={comic.alt} />
-                    <h1 id="comicTitle">Title: {comic.safe_title}</h1>
-                    <p id="comicDate">
-                        Uploaded on: {new Date(parseInt(String(comic.year)), parseInt(String(comic.month)) - 1, parseInt(String(comic.day))).toLocaleDateString()}
-                    </p>
-                </div>
-            )}
+  return (
+    <div>
+      {comic && (
+        <div className="container-for-comics">
+          <img id="comicImage" src={comic.img} alt={comic.alt} />
+          <h1 id="comicTitle">Title: {comic.safe_title}</h1>
+          <p id="comicDate">
+            Uploaded on: {new Date(comic.year, comic.month - 1, comic.day).toLocaleDateString()}
+          </p>
         </div>
-    );
+      )}
+    </div>
+  );
 };
 
 export default ComicDisplay;
